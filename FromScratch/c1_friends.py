@@ -1,4 +1,5 @@
 from collections import Counter
+#given data
 users = [
     { "id": 0, "name": "Hero" },
     { "id": 1, "name": "Dunn" },
@@ -13,6 +14,7 @@ users = [
 ]
 friendship_pairs = [(1,0), (0,2), (1,2), (1,3), (2,3), (3,4), 
         (4,5), (5,6), (5,7), (6,8), (7,8), (8,9)]
+
 #storing the friends of each individual user 
 friendships = {user["id"]: [] for user in users}
 for i,j in friendship_pairs:
@@ -24,6 +26,7 @@ def number_of_friends(user):
     user_id = user["id"]
     friends_ids=friendships[user_id]
     return len(friends_ids)
+
 #average connections
 total_connections = sum(number_of_friends(user) for user in users)
 num_users = len(users)
@@ -31,6 +34,7 @@ avg_connections =  total_connections / num_users
 num_friends_by_id = [(user["id"], number_of_friends(user)) for user in users]
 num_friends_by_id.sort(key=lambda id_and_friends: id_and_friends[1],
         reverse=True)
+
 #mutual friends
 def foaf_ids_bad(user):
     """foaf means friend of a friend"""
@@ -55,6 +59,7 @@ def friends_of_friends(user):
 print(foaf_ids_bad(users[3]))
 print(foaf_ids_fine(users[3]))
 print(friends_of_friends(users[3]))
+
 #added interest data for users
 interests = [
     (0, "Hadoop"), (0, "Big Data"), (0, "HBase"), (0, "Java"),
